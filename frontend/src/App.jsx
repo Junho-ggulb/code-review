@@ -4,27 +4,32 @@ import axios from "axios";
 
 function Topic() {
   const [topicList, setTopicList] = useState([]);
-  const getData = async () => {
-    try {
-      const res = await axios.get("http://localhost:4000/topic/list");
-      return res;
-    } catch (error) {
-      console.log(error);
-      return [];
-    }
-  }
 
-  useEffect(() => {
-    const list = getData();
-    console.log(list)
-    setTopicList(list)
+
+  useEffect( () => {
+    (async() => {
+      try {
+        const res = await axios.get("http://localhost:4000/topic/list");
+        setTopicList(res.data);
+      } catch (error) {
+        console.log(error)
+      }
+    })()
   }, []);
 
   return (
     <>
       <h2>주제 리스트</h2>
       <div>{topicList.length > 0 ? topicList.map(topic => {
-        return <div>topic.title</div>
+        return (
+          <>
+          <div>{topic.title}</div>
+          <div>{topic.description}</div>
+          <div>{topic.createdAt}</div>
+          <div>{topic.hashtags}</div>
+          </>
+          
+        )
       }) : "리스트가 없습니다."}</div>
       <div>
         <Link to="/topic/add">주제 등록</Link>
@@ -81,8 +86,12 @@ function TopicRegist() {
 
 function Home() {
   return (
+    <>
     <h2>Home</h2>
-    
+    <ul>
+      <li><Link to={"/topic"}>주제 리스트</Link></li>
+    </ul>
+    </>
   )
 }
 
