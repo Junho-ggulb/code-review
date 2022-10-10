@@ -1,0 +1,11 @@
+:root {
+    --color-navy:#4A6586;
+    --color-grey:#C7C5C5;
+    --color-light-beige:#F7F5F2;
+    --color-beige:#F0E5CE;
+
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-shadow: 0 20px 25px -5pxrgb(0 0 0/0.1),0 8px 10px -6pxrgb(0 0 0/0.1);
+
+}
